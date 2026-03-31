@@ -144,6 +144,119 @@
             text-align: center;
             padding: 2rem 5%;
             position: relative;
+            overflow: hidden;
+        }
+        
+        /* Floating Background Images */
+        .floating-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .floating-item {
+            position: absolute;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(2px);
+            animation: float-item 8s ease-in-out infinite;
+            opacity: 0.3;
+            transition: all 0.5s;
+        }
+        
+        .floating-item:hover {
+            opacity: 0.8;
+            transform: scale(1.1) !important;
+            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.6);
+            border-color: var(--primary);
+        }
+        
+        .floating-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* גדלים שונים */
+        .floating-item.size-small {
+            width: 150px;
+            height: 150px;
+        }
+        
+        .floating-item.size-medium {
+            width: 220px;
+            height: 220px;
+        }
+        
+        .floating-item.size-large {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* מיקומים שונים */
+        .floating-item:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            animation-duration: 10s;
+        }
+        
+        .floating-item:nth-child(2) {
+            top: 60%;
+            left: 15%;
+            animation-delay: 1.5s;
+            animation-duration: 12s;
+        }
+        
+        .floating-item:nth-child(3) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 3s;
+            animation-duration: 9s;
+        }
+        
+        .floating-item:nth-child(4) {
+            bottom: 15%;
+            right: 8%;
+            animation-delay: 2s;
+            animation-duration: 11s;
+        }
+        
+        .floating-item:nth-child(5) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 4s;
+            animation-duration: 13s;
+        }
+        
+        .floating-item:nth-child(6) {
+            top: 5%;
+            left: 35%;
+            animation-delay: 5s;
+            animation-duration: 10s;
+        }
+        
+        @keyframes float-item {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-60px) rotate(-5deg);
+            }
+            75% {
+                transform: translateY(-30px) rotate(3deg);
+            }
         }
         
         .hero-content {
@@ -518,6 +631,11 @@
             .rooms-grid {
                 grid-template-columns: 1fr;
             }
+            
+            /* הסתר תמונות מרחפות במובייל */
+            .floating-images {
+                display: none;
+            }
         }
         
         /* Scroll animations */
@@ -553,6 +671,45 @@
     
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <!-- Floating Background Images -->
+        <div class="floating-images">
+            <!-- תמונה 1 - גדול -->
+            <div class="floating-item size-large">
+                <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%204.jpg" alt="escape room">
+                <!-- החלף ב: <img src="תמונה-1.jpg" alt="escape room"> -->
+            </div>
+            
+            <!-- תמונה 2 - בינוני -->
+            <div class="floating-item size-medium">
+                <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%209.png" alt="escape room">
+                <!-- החלף ב: <img src="תמונה-2.jpg" alt="escape room"> -->
+            </div>
+            
+            <!-- תמונה 3 - קטן -->
+            <div class="floating-item size-small">
+                <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%206.png" alt="escape room">
+                <!-- החלף ב: <img src="תמונה-3.jpg" alt="escape room"> -->
+            </div>
+            
+            <!-- תמונה 4 - בינוני -->
+            <div class="floating-item size-medium">
+                <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%209.png" alt="escape room">
+                <!-- החלף ב: <img src="תמונה-4.jpg" alt="escape room"> -->
+            </div>
+            
+            <!-- תמונה 5 - גדול -->
+            <div class="floating-item size-large">
+                <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%209.png" alt="escape room">
+                <!-- החלף ב: <img src="תמונה-5.jpg" alt="escape room"> -->
+            </div>
+            
+            <!-- תמונה 6 - קטן -->
+            <div class="floating-item size-small">
+                <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%209.png" alt="escape room">
+                <!-- החלף ב: <img src="תמונה-6.jpg" alt="escape room"> -->
+            </div>
+        </div>
+        
         <div class="hero-content">
             <h1>האתגר שלך מתחיל כאן</h1>
             <p>חדרי בריחה אונליין מרתקים בסגנונות שונים - מותחן, אימה, מדע בדיוני ועוד. תפתור חידות, תגלה סודות ותברח בזמן!</p>
@@ -740,6 +897,12 @@
     
     <!-- Footer -->
     <footer id="contact">
+        <div class="social-links">
+            <a href="#">📘</a>
+            <a href="#">📷</a>
+            <a href="#">🐦</a>
+            <a href="#">📧</a>
+        </div>
         <p>&copy; 2024 חדרי בריחה אונליין. כל הזכויות שמורות.</p>
     </footer>
     
