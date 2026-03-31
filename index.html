@@ -1,162 +1,82 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מחולל התמונות שלי</title>
+    <title>AI Image Generator</title>
     <style>
-        body {
-            font-family: sans-serif;
-            background: #121212;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #1e1e1e;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        input {
-            width: 80%;
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-
-        button {
-            padding: 12px 25px;
-            background: #6200ee;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        button:disabled {
-            background: #444;
-        }
-
-        #result {
-            margin-top: 20px;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed #444;
-            border-radius: 10px;
-        }
-
-        img {
-            max-width: 100%;
-            border-radius: 10px;
-            display: none;
-        }
-
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #6200ee;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            display: none;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
+        body { font-family: sans-serif; background: #121212; color: white; text-align: center; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: #1e1e1e; padding: 30px; border-radius: 15px; }
+        input { width: 80%; padding: 12px; border-radius: 8px; border: none; margin-bottom: 10px; }
+        button { padding: 12px 25px; background: #6200ee; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        #result { margin-top: 20px; min-height: 200px; }
+        img { max-width: 100%; border-radius: 10px; display: none; margin-top: 15px; }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #6200ee; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; display: none; margin: auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-
 <body>
 
     <div class="container">
-        <h1>AI Image Generator</h1>
-        <p>כתוב תיאור לתמונה באנגלית:</p>
-        <input type="text" id="promptInput" placeholder="למשל: A magical castle on a floating island...">
+        <h1>מחולל תמונות AI</h1>
+        <input type="text" id="promptInput" placeholder="כתוב תיאור באנגלית...">
         <br>
         <button id="generateBtn">צור תמונה ✨</button>
 
         <div id="result">
             <div class="loader" id="loader"></div>
-            <img id="outputImage" src="" alt="התמונה תופיע כאן">
+            <img id="outputImage" src="">
         </div>
     </div>
 
-   <script>
-    // 1. ה-Token שלך
-    const API_TOKEN = "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
+    <script>
+        // 1. הזן כאן את ה-Token שלך
+        const API_TOKEN = "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
 "; 
-    
-    // שימוש ב-Proxy כדי לעקוף את חסימת ה-CORS של הדפדפן/נטפרי
-    const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
-    const MODEL_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell";
+        
+        // 2. כתובת ה-Proxy (חשוב מאוד לעקוף CORS)
+        const PROXY = "https://cors-anywhere.herokuapp.com/";
+        const MODEL_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell";
 
-    const btn = document.getElementById('generateBtn');
-    const promptInput = document.getElementById('promptInput');
-    const loader = document.getElementById('loader');
-    const img = document.getElementById('outputImage');
+        const btn = document.getElementById('generateBtn');
+        const promptInput = document.getElementById('promptInput');
+        const loader = document.getElementById('loader');
+        const img = document.getElementById('outputImage');
 
-    async function generateImage() {
-        const prompt = promptInput.value;
-        if (!prompt) return alert("בבקשה תכתוב תיאור באנגלית!");
+        btn.onclick = async function() {
+            const prompt = promptInput.value;
+            if (!prompt) return alert("בבקשה כתוב תיאור!");
 
-        btn.disabled = true;
-        btn.innerText = "יוצר... (בפעם הראשונה לחץ על הלינק בהודעה)";
-        loader.style.display = "block";
-        img.style.display = "none";
+            // עדכון הממשק
+            btn.disabled = true;
+            btn.innerText = "יוצר...";
+            loader.style.display = "block";
+            img.style.display = "none";
 
-        try {
-            // הוספת ה-Proxy לפני כתובת המודל
-            const response = await fetch(PROXY_URL + MODEL_URL, {
-                headers: { 
-                    "Authorization": `Bearer ${API_TOKEN}`,
-                    "Content-Type": "application/json",
-                    "x-requested-with": "XMLHttpRequest"
-                },
-                method: "POST",
-                body: JSON.stringify({ inputs: prompt }),
-            });
+            try {
+                const response = await fetch(PROXY + MODEL_URL, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json",
+                        "x-requested-with": "XMLHttpRequest"
+                    },
+                    body: JSON.stringify({ inputs: prompt })
+                });
 
-            if (response.status === 403) {
-                alert("עליך לאשר גישה ל-Proxy פעם אחת.\nלחץ על האישור ואז על כפתור 'Request temporary access' בדף שיפתח, וחזור לכאן.");
-                window.open("https://cors-anywhere.herokuapp.com/corsdemo", "_blank");
-                return;
-            }
+                if (response.status === 403) {
+                    alert("צריך לאשר את ה-Proxy. דף האישור יפתח כעת. לחץ על הכפתור הלבן שם וחזור לכאן.");
+                    window.open("https://cors-anywhere.herokuapp.com/corsdemo", "_blank");
+                    return;
+                }
 
-            const blob = await response.blob();
-            const objectURL = URL.createObjectURL(blob);
-            img.src = objectURL;
-            img.style.display = "block";
-            btn.innerText = "צור תמונה ✨";
-        } catch (error) {
-            console.error(error);
-            alert("שגיאה: " + error.message);
-        } finally {
-            btn.disabled = false;
-            loader.style.display = "none";
-        }
-    }
+                const blob = await response.blob();
+                img.src = URL.createObjectURL(blob);
+                img.style.display = "block";
+                btn.innerText = "צור תמונה ✨";
 
-    btn.addEventListener('click', generateImage);
-</script>
-</body>
-
-</html>
+            } catch (err) {
+                console.error(err);
+                alert("שגיאה: " + err.message);
+            } finally {
+                btn.disabled = false;
