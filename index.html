@@ -100,64 +100,53 @@
         </div>
     </div>
 
-    <script>
-        // 1. החלף כאן ב-Token האמיתי שלך
-        const API_TOKEN = "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";
-        const MODEL_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell";
+<script type="module">
+    import { HfInference } from 'https://cdn.jsdelivr.net/npm/@huggingface/inference@2.6.4/+esm';
 
-        const btn = document.getElementById('generateBtn');
-        const promptInput = document.getElementById('promptInput');
-        const loader = document.getElementById('loader');
-        const img = document.getElementById('outputImage');
+    // 1. ה-Token שלך
+    const API_TOKEN = "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
+"; 
+    const inference = new HfInference(API_TOKEN);
 
-        async function query(data) {
-            console.log("שולח בקשה לשרת...");
-            const response = await fetch(MODEL_URL, {
-                headers: {
-                    "Authorization": `Bearer ${API_TOKEN}`,
-                    "Content-Type": "application/json"
-                },
-                method: "POST",
-                body: JSON.stringify(data),
+    const btn = document.getElementById('generateBtn');
+    const promptInput = document.getElementById('promptInput');
+    const loader = document.getElementById('loader');
+    const img = document.getElementById('outputImage');
+
+    btn.addEventListener('click', async () => {
+        const prompt = promptInput.value;
+        if (!prompt) return alert("בבקשה תכתוב תיאור באנגלית!");
+
+        btn.disabled = true;
+        btn.innerText = "מעבד... (זה עשוי לקחת זמן בנטפרי)";
+        loader.style.display = "block";
+        img.style.display = "none";
+
+        try {
+            // שימוש בספרייה הרשמית עוקף את רוב בעיות ה-CORS
+            const responseBlob = await inference.textToImage({
+                model: 'black-forest-labs/FLUX.1-schnell',
+                inputs: prompt,
+                parameters: {
+                    target_size: { width: 512, height: 512 } // גודל קטן יותר לטעינה מהירה
+                }
             });
 
-            const result = await response.blob();
-
-            // בדיקה אם השרת החזיר שגיאה (במקום תמונה)
-            if (response.status !== 200) {
-                const errorText = await result.text();
-                console.error("שגיאת שרת:", errorText);
-                throw new Error("השרת החזיר שגיאה. ודא שה-Token תקין.");
-            }
-
-            return result;
+            const objectURL = URL.createObjectURL(responseBlob);
+            img.src = objectURL;
+            img.style.display = "block";
+            btn.innerText = "צור תמונה ✨";
+        } catch (error) {
+            console.error(error);
+            alert("שגיאה: " + error.message + "\nנסה שוב בעוד דקה.");
+            btn.innerText = "נסה שוב";
+        } finally {
+            btn.disabled = false;
+            loader.style.display = "none";
         }
+    });
+</script>
 
-        btn.addEventListener('click', async () => {
-            const prompt = promptInput.value;
-            if (!prompt) return alert("בבקשה תכתוב תיאור באנגלית!");
-
-            // איפוס מצב
-            btn.disabled = true;
-            btn.innerText = "יוצר... (זה לוקח כ-10 שניות)";
-            loader.style.display = "block";
-            img.style.display = "none";
-
-            try {
-                const responseBlob = await query({ "inputs": prompt });
-                const objectURL = URL.createObjectURL(responseBlob);
-                img.src = objectURL;
-                img.style.display = "block";
-                btn.innerText = "צור תמונה ✨";
-            } catch (error) {
-                alert("שגיאה: " + error.message);
-                btn.innerText = "נסה שוב";
-            } finally {
-                btn.disabled = false;
-                loader.style.display = "none";
-            }
-        });
-    </script>
 </body>
 
 </html>
