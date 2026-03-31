@@ -100,53 +100,53 @@
         </div>
     </div>
 
-<script type="module">
-    import { HfInference } from 'https://cdn.jsdelivr.net/npm/@huggingface/inference@2.6.4/+esm';
+    <script type="module">
+        import { HfInference } from 'https://cdn.jsdelivr.net/npm/@huggingface/inference@2.6.4/+esm';
 
-    // 1. ה-Token שלך
-    const API_TOKEN = "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
-"; 
-    const inference = new HfInference(API_TOKEN);
+        // 1. ה-Token שלך (ודא שהוא מתחיל ב-hf_)
+        const API_TOKEN = "hf_XXXXXXXXXXXXXXXXXXXXXXXX"; 
+        const inference = new HfInference(API_TOKEN);
 
-    const btn = document.getElementById('generateBtn');
-    const promptInput = document.getElementById('promptInput');
-    const loader = document.getElementById('loader');
-    const img = document.getElementById('outputImage');
+        const btn = document.getElementById('generateBtn');
+        const promptInput = document.getElementById('promptInput');
+        const loader = document.getElementById('loader');
+        const img = document.getElementById('outputImage');
 
-    btn.addEventListener('click', async () => {
-        const prompt = promptInput.value;
-        if (!prompt) return alert("בבקשה תכתוב תיאור באנגלית!");
+        // פונקציית היצירה
+        async function generateImage() {
+            const prompt = promptInput.value;
+            if (!prompt) return alert("בבקשה תכתוב תיאור באנגלית!");
 
-        btn.disabled = true;
-        btn.innerText = "מעבד... (זה עשוי לקחת זמן בנטפרי)";
-        loader.style.display = "block";
-        img.style.display = "none";
+            // הכנות ויזואליות
+            btn.disabled = true;
+            btn.innerText = "מעבד... המתן";
+            loader.style.display = "block";
+            img.style.display = "none";
 
-        try {
-            // שימוש בספרייה הרשמית עוקף את רוב בעיות ה-CORS
-            const responseBlob = await inference.textToImage({
-                model: 'black-forest-labs/FLUX.1-schnell',
-                inputs: prompt,
-                parameters: {
-                    target_size: { width: 512, height: 512 } // גודל קטן יותר לטעינה מהירה
-                }
-            });
+            try {
+                console.log("מתחיל יצירה עם המודל...");
+                const responseBlob = await inference.textToImage({
+                    model: 'black-forest-labs/FLUX.1-schnell',
+                    inputs: prompt,
+                });
 
-            const objectURL = URL.createObjectURL(responseBlob);
-            img.src = objectURL;
-            img.style.display = "block";
-            btn.innerText = "צור תמונה ✨";
-        } catch (error) {
-            console.error(error);
-            alert("שגיאה: " + error.message + "\nנסה שוב בעוד דקה.");
-            btn.innerText = "נסה שוב";
-        } finally {
-            btn.disabled = false;
-            loader.style.display = "none";
+                const objectURL = URL.createObjectURL(responseBlob);
+                img.src = objectURL;
+                img.style.display = "block";
+                btn.innerText = "צור תמונה ✨";
+            } catch (error) {
+                console.error("שגיאה מפורטת:", error);
+                alert("שגיאה: " + error.message);
+                btn.innerText = "נסה שוב";
+            } finally {
+                btn.disabled = false;
+                loader.style.display = "none";
+            }
         }
-    });
-</script>
 
+        // חיבור הכפתור לפונקציה בצורה בטוחה
+        btn.addEventListener('click', generateImage);
+    </script>
 </body>
 
 </html>
