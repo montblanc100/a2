@@ -100,53 +100,63 @@
         </div>
     </div>
 
-    <script type="module">
-        import { HfInference } from 'https://cdn.jsdelivr.net/npm/@huggingface/inference@2.6.4/+esm';
+   <script>
+    // 1. ה-Token שלך
+    const API_TOKEN = "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
+"; 
+    
+    // שימוש ב-Proxy כדי לעקוף את חסימת ה-CORS של הדפדפן/נטפרי
+    const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+    const MODEL_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell";
 
-        // 1. ה-Token שלך (ודא שהוא מתחיל ב-hf_)
-        const API_TOKEN = "hf_XXXXXXXXXXXXXXXXXXXXXXXX"; 
-        const inference = new HfInference(API_TOKEN);
+    const btn = document.getElementById('generateBtn');
+    const promptInput = document.getElementById('promptInput');
+    const loader = document.getElementById('loader');
+    const img = document.getElementById('outputImage');
 
-        const btn = document.getElementById('generateBtn');
-        const promptInput = document.getElementById('promptInput');
-        const loader = document.getElementById('loader');
-        const img = document.getElementById('outputImage');
+    async function generateImage() {
+        const prompt = promptInput.value;
+        if (!prompt) return alert("בבקשה תכתוב תיאור באנגלית!");
 
-        // פונקציית היצירה
-        async function generateImage() {
-            const prompt = promptInput.value;
-            if (!prompt) return alert("בבקשה תכתוב תיאור באנגלית!");
+        btn.disabled = true;
+        btn.innerText = "יוצר... (בפעם הראשונה לחץ על הלינק בהודעה)";
+        loader.style.display = "block";
+        img.style.display = "none";
 
-            // הכנות ויזואליות
-            btn.disabled = true;
-            btn.innerText = "מעבד... המתן";
-            loader.style.display = "block";
-            img.style.display = "none";
+        try {
+            // הוספת ה-Proxy לפני כתובת המודל
+            const response = await fetch(PROXY_URL + MODEL_URL, {
+                headers: { 
+                    "Authorization": `Bearer ${API_TOKEN}`,
+                    "Content-Type": "application/json",
+                    "x-requested-with": "XMLHttpRequest"
+                },
+                method: "POST",
+                body: JSON.stringify({ inputs: prompt }),
+            });
 
-            try {
-                console.log("מתחיל יצירה עם המודל...");
-                const responseBlob = await inference.textToImage({
-                    model: 'black-forest-labs/FLUX.1-schnell',
-                    inputs: prompt,
-                });
-
-                const objectURL = URL.createObjectURL(responseBlob);
-                img.src = objectURL;
-                img.style.display = "block";
-                btn.innerText = "צור תמונה ✨";
-            } catch (error) {
-                console.error("שגיאה מפורטת:", error);
-                alert("שגיאה: " + error.message);
-                btn.innerText = "נסה שוב";
-            } finally {
-                btn.disabled = false;
-                loader.style.display = "none";
+            if (response.status === 403) {
+                alert("עליך לאשר גישה ל-Proxy פעם אחת.\nלחץ על האישור ואז על כפתור 'Request temporary access' בדף שיפתח, וחזור לכאן.");
+                window.open("https://cors-anywhere.herokuapp.com/corsdemo", "_blank");
+                return;
             }
-        }
 
-        // חיבור הכפתור לפונקציה בצורה בטוחה
-        btn.addEventListener('click', generateImage);
-    </script>
+            const blob = await response.blob();
+            const objectURL = URL.createObjectURL(blob);
+            img.src = objectURL;
+            img.style.display = "block";
+            btn.innerText = "צור תמונה ✨";
+        } catch (error) {
+            console.error(error);
+            alert("שגיאה: " + error.message);
+        } finally {
+            btn.disabled = false;
+            loader.style.display = "none";
+        }
+    }
+
+    btn.addEventListener('click', generateImage);
+</script>
 </body>
 
 </html>
