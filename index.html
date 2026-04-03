@@ -10,20 +10,17 @@
 
         @font-face {
             font-family: 'MyCustomFont';
-            /* השם שבו תשתמש ב-CSS */
             src: url('font/PingHL-Black.woff') format('woff');
             font-weight: normal;
             font-style: normal;
         }
-        
+
         @font-face {
             font-family: 'font1';
-            /* השם שבו תשתמש ב-CSS */
             src: url('font/stopmotiondecember11-webfont.woff') format('woff');
             font-weight: normal;
             font-style: normal;
         }
-
 
         * {
             margin: 0;
@@ -32,12 +29,15 @@
         }
 
         :root {
-            --primary: #ff006e;
-            --secondary: #8338ec;
-            --accent: #3a86ff;
+            --primary: #9333ea;
+            --secondary: #4c1d95;
+            --accent: #0ea5e9;
             --dark: #0a0a0a;
-            --light: #f8f9fa;
-            --glow: rgba(255, 0, 110, 0.5);
+            --light: #e0e7ff;
+            --glow: rgba(147, 51, 234, 0.6);
+            --mystery-purple: #7c3aed;
+            --deep-blue: #1e3a8a;
+            --dark-purple: #2e1065;
         }
 
         body {
@@ -55,7 +55,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(45deg, #0a0a0a, #1a0a2e, #16213e);
+            background: linear-gradient(45deg, #0a0014, #1a0a2e, #0f172a, #1e1b4b);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
         }
@@ -87,7 +87,7 @@
             position: absolute;
             width: 3px;
             height: 3px;
-            background: var(--accent);
+            background: var(--mystery-purple);
             border-radius: 50%;
             opacity: 0.6;
             animation: float 6s infinite;
@@ -113,17 +113,17 @@
             align-items: center;
             position: sticky;
             top: 0;
-            background: rgba(10, 10, 10, 0.9);
+            background: rgba(10, 0, 20, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 2px solid rgba(255, 0, 110, 0.3);
+            border-bottom: 2px solid rgba(147, 51, 234, 0.4);
         }
 
         .logo {
             font-family: 'MyCustomFont';
             font-size: 2rem;
             font-weight: 900;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            background: linear-gradient(90deg, var(--primary), var(--mystery-purple), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -203,18 +203,18 @@
             position: absolute;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            border: 3px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.4);
+            border: 3px solid rgba(147, 51, 234, 0.3);
             backdrop-filter: blur(2px);
             animation: float-item 8s ease-in-out infinite;
-            opacity: 0.3;
+            opacity: 0.25;
             transition: all 0.5s;
         }
 
         .floating-item:hover {
-            opacity: 0.8;
+            opacity: 0.7;
             transform: scale(1.1) !important;
-            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.6);
+            box-shadow: 0 20px 60px rgba(147, 51, 234, 0.8);
             border-color: var(--primary);
         }
 
@@ -315,7 +315,7 @@
             font-size: 4.5rem;
             font-weight: 900;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            background: linear-gradient(135deg, var(--primary), var(--mystery-purple), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -377,9 +377,9 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--mystery-purple));
             color: white;
-            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.4);
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.5);
         }
 
         .btn-primary::before {
@@ -402,7 +402,7 @@
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 0, 110, 0.6);
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.7);
         }
 
         .btn-secondary {
@@ -414,13 +414,13 @@
         .btn-secondary:hover {
             background: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(58, 134, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.5);
         }
 
         /* Rooms Section */
         .rooms-section {
             padding: 5rem 5%;
-            background: linear-gradient(180deg, transparent, rgba(26, 10, 46, 0.5));
+            background: linear-gradient(180deg, transparent, rgba(46, 16, 101, 0.3));
         }
 
         .section-title {
@@ -443,10 +443,10 @@
         }
 
         .room-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(30, 27, 75, 0.3);
             border-radius: 20px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(147, 51, 234, 0.3);
             transition: all 0.4s;
             position: relative;
             cursor: pointer;
@@ -459,26 +459,26 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--mystery-purple));
             opacity: 0;
             transition: opacity 0.4s;
             z-index: 1;
         }
 
         .room-card:hover::before {
-            opacity: 0.1;
+            opacity: 0.15;
         }
 
         .room-card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.3);
+            box-shadow: 0 20px 60px rgba(147, 51, 234, 0.5);
             border-color: var(--primary);
         }
 
         .room-image {
             width: 100%;
             height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -493,43 +493,35 @@
         }
 
         .room-image.horror {
-            background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+            background: linear-gradient(135deg, #7f1d1d 0%, #581c87 100%);
         }
 
         .room-image.adventure {
-            background: linear-gradient(135deg, #065f46 0%, #059669 100%);
+            background: linear-gradient(135deg, #065f46 0%, #0891b2 100%);
         }
 
         .room-image.scifi {
-            background: linear-gradient(135deg, #0c4a6e 0%, #0ea5e9 100%);
+            background: linear-gradient(135deg, #0c4a6e 0%, #4c1d95 100%);
         }
 
         .room-image.fantasy {
-            background: linear-gradient(135deg, #6b21a8 0%, #ec4899 100%);
+            background: linear-gradient(135deg, #6b21a8 0%, #9333ea 100%);
         }
 
         .room-image.crime {
-            background: linear-gradient(135deg, #422006 0%, #ea580c 100%);
+            background: linear-gradient(135deg, #422006 0%, #7c2d12 100%);
         }
 
         .room-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none;
-            /* יוצג כשתוסיף תמונה אמיתית */
+            display: block;
         }
 
-        /* הוראות להוספת תמונות - מוסתר מהמשתמש */
-        .image-placeholder {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            opacity: 0.3;
-            font-size: 0.9rem;
-            display: none;
+        /* הסתר את האימוג'י כשיש תמונה */
+        .room-image:has(img) {
+            font-size: 0;
         }
 
         .room-content {
@@ -541,7 +533,7 @@
         .room-category {
             display: inline-block;
             padding: 0.4rem 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--mystery-purple));
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 700;
@@ -559,7 +551,7 @@
 
         .room-description {
             font-family: 'font1';
-            opacity: 0.8;
+            opacity: 0.85;
             line-height: 1.6;
             margin-bottom: 1.5rem;
         }
@@ -578,13 +570,13 @@
         }
 
         .difficulty-star {
-            color: #ffd700;
+            color: #a78bfa;
         }
 
         .room-link {
             display: inline-block;
             padding: 0.8rem 2rem;
-            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            background: linear-gradient(135deg, var(--accent), var(--mystery-purple));
             color: white;
             text-decoration: none;
             border-radius: 25px;
@@ -594,72 +586,15 @@
 
         .room-link:hover {
             transform: translateX(-5px);
-            box-shadow: 0 5px 20px rgba(58, 134, 255, 0.5);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 5rem 5%;
-            background: rgba(22, 33, 62, 0.3);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            box-shadow: 0 5px 20px rgba(124, 58, 237, 0.6);
         }
 
         /* Footer */
         footer {
             padding: 3rem 5%;
-            background: rgba(10, 10, 10, 0.9);
+            background: rgba(10, 0, 20, 0.95);
             text-align: center;
-            border-top: 2px solid rgba(255, 0, 110, 0.3);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            font-size: 1.5rem;
-            color: var(--light);
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--primary);
-            transform: translateY(-3px);
+            border-top: 2px solid rgba(147, 51, 234, 0.4);
         }
 
         /* Responsive */
@@ -717,7 +652,6 @@
             <ul>
                 <li><a href="#home">בית</a></li>
                 <li><a href="#rooms">חדרים</a></li>
-                <!-- <li><a href="#features">יתרונות</a></li> -->
                 <li><a href="#contact">צור קשר</a></li>
             </ul>
         </nav>
@@ -731,42 +665,36 @@
             <div class="floating-item size-large">
                 <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%204.jpg"
                     alt="escape room">
-                <!-- החלף ב: <img src="תמונה-1.jpg" alt="escape room"> -->
             </div>
 
             <!-- תמונה 2 - בינוני -->
             <div class="floating-item size-medium">
                 <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%209.png"
                     alt="escape room">
-                <!-- החלף ב: <img src="תמונה-2.jpg" alt="escape room"> -->
             </div>
 
             <!-- תמונה 3 - קטן -->
             <div class="floating-item size-small">
                 <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%206.png"
                     alt="escape room">
-                <!-- החלף ב: <img src="תמונה-3.jpg" alt="escape room"> -->
             </div>
 
             <!-- תמונה 4 - בינוני -->
             <div class="floating-item size-medium">
                 <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%209.png"
                     alt="escape room">
-                <!-- החלף ב: <img src="תמונה-4.jpg" alt="escape room"> -->
             </div>
 
             <!-- תמונה 5 - גדול -->
             <div class="floating-item size-large">
                 <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%209.png"
                     alt="escape room">
-                <!-- החלף ב: <img src="תמונה-5.jpg" alt="escape room"> -->
             </div>
 
             <!-- תמונה 6 - קטן -->
             <div class="floating-item size-small">
                 <img src="https://montblanc100.github.io/-/img/%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%209.png"
                     alt="escape room">
-                <!-- החלף ב: <img src="תמונה-6.jpg" alt="escape room"> -->
             </div>
         </div>
 
@@ -776,7 +704,6 @@
                 בזמן!</p>
             <div class="cta-buttons">
                 <a href="#rooms" class="btn btn-primary">התחל לשחק עכשיו</a>
-                <!-- <a href="#features" class="btn btn-secondary">למד עוד</a> -->
             </div>
         </div>
     </section>
@@ -787,6 +714,29 @@
 
         <div class="rooms-grid">
             <!-- Room Card 1 - Mystery -->
+            <div class="room-card fade-in">
+                <div class="room-image mystery">
+                    <img src="img/תמונה מספר 4.jpg" alt="חדר מותחן">
+                </div>
+                <div class="room-content">
+                    <span class="room-category">פנטזיה</span>
+                    <h3 class="room-title">חדר האוצרות - דופליקטים</h3>
+                    <p class="room-description"> זירו בדרך לגנוב הכל.
+                        עליכם לחלץ את האוצרות במהירות ולהעבירם למקום מבטחים לפני שהוא יגיע.</p>
+                    <div class="room-meta">
+                        <span>⏱️ 40 דקות</span>
+                        <div class="difficulty">
+                            <span class="difficulty-star">רמת קושי: </span>
+                            <span class="difficulty-star">⭐</span>
+                            <span class="difficulty-star">⭐</span>
+                            <span class="difficulty-star">⭐</span>
+                            <span class="difficulty-star">⭐</span>
+                        </div>
+                    </div>
+                    <a href="https://montblanc100.github.io/-/%D7%97%D7%93%D7%A8%20%D7%91%D7%A8%D7%99%D7%97%D7%94.html"
+                        class="room-link" target="_blank">שחק עכשיו ←</a>
+                </div>
+            </div>
             <div class="room-card fade-in">
                 <div class="room-image mystery">
                     <img src="img/logo.jpg" alt="חדר מותחן">
@@ -810,160 +760,103 @@
                         class="room-link" target="_blank">שחק עכשיו ←</a>
                 </div>
             </div>
-
-            <!-- Room Card 2 - Horror -->
             <div class="room-card fade-in">
-                <div class="room-image horror">
-                    👻
-                    <!-- להחלפה: <img src="תמונה-אימה.jpg" alt="חדר אימה"> -->
-                </div>
-                <div class="room-content">
-                    <span class="room-category">אימה</span>
-                    <h3 class="room-title">המרתף המקולל</h3>
-                    <p class="room-description">המרתף הזה לא נפתח כבר עשרות שנים. רוחות העבר מחכות לך. האם תעז להיכנס?
-                    </p>
-                    <div class="room-meta">
-                        <span>⏱️ 45 דקות</span>
-                        <div class="difficulty">
-                            <span class="difficulty-star">⭐</span>
-                            <span class="difficulty-star">⭐</span>
-                            <span class="difficulty-star">⭐</span>
-                            <span class="difficulty-star">⭐</span>
-                        </div>
-                    </div>
-                    <a href="#" class="room-link">שחק עכשיו ←</a>
-                </div>
-            </div>
-
-            <!-- Room Card 3 - Adventure -->
-            <div class="room-card fade-in">
-                <div class="room-image adventure">
-                    🗺️
-                    <!-- להחלפה: <img src="תמונה-הרפתקה.jpg" alt="חדר הרפתקה"> -->
-                </div>
-                <div class="room-content">
-                    <span class="room-category">הרפתקה</span>
-                    <h3 class="room-title">האוצר האבוד של המאיה</h3>
-                    <p class="room-description">מסע מרתק אל תוך ג'ונגלים עתיקים בחיפוש אחר האוצר האגדי. תפתור חידות מאיה
-                        עתיקות!</p>
-                    <div class="room-meta">
-                        <span>⏱️ 75 דקות</span>
-                        <div class="difficulty">
-                            <span class="difficulty-star">⭐</span>
-                            <span class="difficulty-star">⭐</span>
-                            <span class="difficulty-star">⭐</span>
-                        </div>
-                    </div>
-                    <a href="#" class="room-link">שחק עכשיו ←</a>
-                </div>
-            </div>
-
-            <!-- Room Card 4 - Sci-Fi -->
-            <div class="room-card fade-in">
-                <div class="room-image scifi">
-                    🚀
-                    <!-- להחלפה: <img src="תמונה-מדע-בדיוני.jpg" alt="חדר מדע בדיוני"> -->
-                </div>
-                <div class="room-content">
-                    <span class="room-category">מדע בדיוני</span>
-                    <h3 class="room-title">תחנת החלל הנטושה</h3>
-                    <p class="room-description">תחנת חלל בשנת 2157. המערכות קורסות והזמן אוזל. עליך להציל את עצמך לפני
-                        שיהיה מאוחר מדי.</p>
-                    <div class="room-meta">
-                        <span>⏱️ 90 דקות</span>
-                        <div class="difficulty">
-                            <span class="difficulty-star">⭐</span>
-                            <span class="difficulty-star">⭐</span>
-                            <span class="difficulty-star">⭐</span>
-                            <span class="difficulty-star">⭐</span>
-                            <span class="difficulty-star">⭐</span>
-                        </div>
-                    </div>
-                    <a href="#" class="room-link">שחק עכשיו ←</a>
-                </div>
-            </div>
-
-            <!-- Room Card 5 - Fantasy -->
-            <div class="room-card fade-in">
-                <div class="room-image fantasy">
-                    🧙‍♂️
-                    <!-- להחלפה: <img src="תמונה-פנטזיה.jpg" alt="חדר פנטזיה"> -->
+                <div class="room-image mystery">
+                    <img src="img/logo.jpg" alt="חדר מותחן">
                 </div>
                 <div class="room-content">
                     <span class="room-category">פנטזיה</span>
-                    <h3 class="room-title">המגדל הקסום</h3>
-                    <p class="room-description">מגדל של קוסם עתיק מלא בלחשים וקסמים. פתור את חידות הקסם והפוך לקוסם
-                        הגדול הבא!</p>
+                    <h3 class="room-title">חדר האוצרות - דופליקטים</h3>
+                    <p class="room-description"> זירו בדרך לגנוב הכל.
+                        עליכם לחלץ את האוצרות במהירות ולהעבירם למקום מבטחים לפני שהוא יגיע.</p>
                     <div class="room-meta">
-                        <span>⏱️ 60 דקות</span>
+                        <span>⏱️ 40 דקות</span>
                         <div class="difficulty">
+                            <span class="difficulty-star">רמת קושי: </span>
+                            <span class="difficulty-star">⭐</span>
+                            <span class="difficulty-star">⭐</span>
                             <span class="difficulty-star">⭐</span>
                             <span class="difficulty-star">⭐</span>
                         </div>
                     </div>
-                    <a href="#" class="room-link">שחק עכשיו ←</a>
+                    <a href="https://montblanc100.github.io/-/%D7%97%D7%93%D7%A8%20%D7%91%D7%A8%D7%99%D7%97%D7%94.html"
+                        class="room-link" target="_blank">שחק עכשיו ←</a>
                 </div>
             </div>
-
-            <!-- Room Card 6 - Crime -->
             <div class="room-card fade-in">
-                <div class="room-image crime">
-                    🕵️
-                    <!-- להחלפה: <img src="תמונה-פשע.jpg" alt="חדר פשע"> -->
+                <div class="room-image mystery">
+                    <img src="img/logo.jpg" alt="חדר מותחן">
                 </div>
                 <div class="room-content">
-                    <span class="room-category">פשע</span>
-                    <h3 class="room-title">תיק הרצח המסתורי</h3>
-                    <p class="room-description">בלש פרטי בשנות ה-40. רצח מסתורי ללא עדים. אספו רמזים, חקרו חשודים וגלו
-                        את האמת!</p>
+                    <span class="room-category">פנטזיה</span>
+                    <h3 class="room-title">חדר האוצרות - דופליקטים</h3>
+                    <p class="room-description"> זירו בדרך לגנוב הכל.
+                        עליכם לחלץ את האוצרות במהירות ולהעבירם למקום מבטחים לפני שהוא יגיע.</p>
                     <div class="room-meta">
-                        <span>⏱️ 70 דקות</span>
+                        <span>⏱️ 40 דקות</span>
                         <div class="difficulty">
+                            <span class="difficulty-star">רמת קושי: </span>
                             <span class="difficulty-star">⭐</span>
                             <span class="difficulty-star">⭐</span>
                             <span class="difficulty-star">⭐</span>
                             <span class="difficulty-star">⭐</span>
                         </div>
                     </div>
-                    <a href="#" class="room-link">שחק עכשיו ←</a>
+                    <a href="https://montblanc100.github.io/-/%D7%97%D7%93%D7%A8%20%D7%91%D7%A8%D7%99%D7%97%D7%94.html"
+                        class="room-link" target="_blank">שחק עכשיו ←</a>
+                </div>
+            </div>
+            <div class="room-card fade-in">
+                <div class="room-image mystery">
+                    <img src="img/logo.jpg" alt="חדר מותחן">
+                </div>
+                <div class="room-content">
+                    <span class="room-category">פנטזיה</span>
+                    <h3 class="room-title">חדר האוצרות - דופליקטים</h3>
+                    <p class="room-description"> זירו בדרך לגנוב הכל.
+                        עליכם לחלץ את האוצרות במהירות ולהעבירם למקום מבטחים לפני שהוא יגיע.</p>
+                    <div class="room-meta">
+                        <span>⏱️ 40 דקות</span>
+                        <div class="difficulty">
+                            <span class="difficulty-star">רמת קושי: </span>
+                            <span class="difficulty-star">⭐</span>
+                            <span class="difficulty-star">⭐</span>
+                            <span class="difficulty-star">⭐</span>
+                            <span class="difficulty-star">⭐</span>
+                        </div>
+                    </div>
+                    <a href="https://montblanc100.github.io/-/%D7%97%D7%93%D7%A8%20%D7%91%D7%A8%D7%99%D7%97%D7%94.html"
+                        class="room-link" target="_blank">שחק עכשיו ←</a>
+                </div>
+            </div>
+            <div class="room-card fade-in">
+                <div class="room-image mystery">
+                    <img src="img/logo.jpg" alt="חדר מותחן">
+                </div>
+                <div class="room-content">
+                    <span class="room-category">פנטזיה</span>
+                    <h3 class="room-title">חדר האוצרות - דופליקטים</h3>
+                    <p class="room-description"> זירו בדרך לגנוב הכל.
+                        עליכם לחלץ את האוצרות במהירות ולהעבירם למקום מבטחים לפני שהוא יגיע.</p>
+                    <div class="room-meta">
+                        <span>⏱️ 40 דקות</span>
+                        <div class="difficulty">
+                            <span class="difficulty-star">רמת קושי: </span>
+                            <span class="difficulty-star">⭐</span>
+                            <span class="difficulty-star">⭐</span>
+                            <span class="difficulty-star">⭐</span>
+                            <span class="difficulty-star">⭐</span>
+                        </div>
+                    </div>
+                    <a href="https://montblanc100.github.io/-/%D7%97%D7%93%D7%A8%20%D7%91%D7%A8%D7%99%D7%97%D7%94.html"
+                        class="room-link" target="_blank">שחק עכשיו ←</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <!-- <section class="features" id="features">
-        <h2 class="section-title">למה לבחור בנו?</h2>
-        <div class="features-grid">
-            <div class="feature-card fade-in">
-                <div class="feature-icon">🎮</div>
-                <h3 class="feature-title">חוויה אינטראקטיבית</h3>
-                <p>טכנולוגיה מתקדמת שתיקח אתכם למסע בלתי נשכח</p>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon">👥</div>
-                <h3 class="feature-title">משחק קבוצתי</h3>
-                <p>שחקו עם חברים מכל מקום בעולם</p>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon">🏆</div>
-                <h3 class="feature-title">טבלת שיאים</h3>
-                <p>התחרו עם שחקנים אחרים ושברו שיאים</p>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon">💡</div>
-                <h3 class="feature-title">רמזים חכמים</h3>
-                <p>מערכת רמזים שתעזור לכם בדיוק כשצריך</p>
-            </div>
-        </div>
-    </section> -->
-
     <!-- Footer -->
     <footer id="contact">
-
         <p>&copy; 2024 חדרי בריחה אונליין. כל הזכויות שמורות.</p>
     </footer>
 
