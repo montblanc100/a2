@@ -15,6 +15,14 @@
             font-weight: normal;
             font-style: normal;
         }
+        
+        @font-face {
+            font-family: 'font1';
+            /* השם שבו תשתמש ב-CSS */
+            src: url('font/stopmotiondecember11-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
 
 
         * {
@@ -112,6 +120,7 @@
         }
 
         .logo {
+            font-family: 'MyCustomFont';
             font-size: 2rem;
             font-weight: 900;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
@@ -549,6 +558,7 @@
         }
 
         .room-description {
+            font-family: 'font1';
             opacity: 0.8;
             line-height: 1.6;
             margin-bottom: 1.5rem;
@@ -779,8 +789,7 @@
             <!-- Room Card 1 - Mystery -->
             <div class="room-card fade-in">
                 <div class="room-image mystery">
-                    <img src="img/logo.jpg"
-                        alt="חדר מותחן">
+                    <img src="img/logo.jpg" alt="חדר מותחן">
                 </div>
                 <div class="room-content">
                     <span class="room-category">פנטזיה</span>
